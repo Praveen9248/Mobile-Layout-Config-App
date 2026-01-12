@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,19 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class HomePage {
+  router = inject(Router);
+  layoutConfigurationStatus = false;
 
-  constructor() {}
+  activeLCD = {
+    deviceId: 'LCD_SOLUM123',
+    deviceName: 'SoluM-LCD-32',
+  };
 
+  onCreateClick() {
+    this.router.navigate(['create-setup']);
+  }
+
+  onAddLcdClick() {
+    this.router.navigate(['connect-lcd']);
+  }
 }

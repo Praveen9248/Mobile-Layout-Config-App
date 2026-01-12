@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Configuration Setup Process</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-template #setupHost></ng-template>
+</ion-content>
+
+<ion-footer class="ion-display-flex ion-justify-content-around">
+  @if (currentStepIndex()===0) {
+  <ion-button (click)="onCancel()">Cancel</ion-button>
+  }@else {
+  <ion-button (click)="handleBackStep()"> Back </ion-button>
+  } @if(currentStepIndex()===this.setupContextService.steps.length-1){
+  <ion-button (click)="onSubmit()">Save and Submit</ion-button>
+  }@else {
+  <ion-button (click)="handleNextStep()"> Save and Next </ion-button>
+  }
+</ion-footer>

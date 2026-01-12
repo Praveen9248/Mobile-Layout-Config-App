@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'create-setup',
+    loadChildren: () => import('./create-setup/create-setup.module').then( m => m.CreateSetupPageModule)
+  },
+  {
+    path: 'connect-lcd',
+    loadChildren: () => import('./connect-lcd/connect-lcd.module').then( m => m.ConnectLcdPageModule)
+  },
 ];
 
 @NgModule({

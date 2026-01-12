@@ -1,20 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> Dashboard </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-item>
+    <ion-label slot="start"> Layout Configured </ion-label>
+    <ion-label slot="end">
+      <ion-toggle [checked]="layoutConfigurationStatus"></ion-toggle>
+    </ion-label>
+  </ion-item>
+  <ion-accordion-group value="first">
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Active LCD Device</ion-label>
+      </ion-item>
+      <ion-card
+        slot="content"
+        class="ion-display-flex ion-align-items-center ion-padding-horizontal"
+      >
+        <ion-img src="https://picsum.photos/id/1/200"> </ion-img>
+        <ion-card-header>
+          <ion-card-title> {{activeLCD.deviceId}} </ion-card-title>
+          <ion-card-subtitle> {{activeLCD.deviceName}} </ion-card-subtitle>
+        </ion-card-header>
+      </ion-card>
+    </ion-accordion>
+  </ion-accordion-group>
+  <ion-accordion-group value="second">
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>LCD Configuration List</ion-label>
+      </ion-item>
+      <ion-card
+        slot="content"
+        class="ion-display-flex ion-align-items-center ion-padding-horizontal"
+      >
+        <ion-thumbnail>
+          <ion-img src="https://picsum.photos/id/30/200"> </ion-img>
+        </ion-thumbnail>
+        <ion-card-header class="ion-flex-1">
+          <ion-card-title> #Draft32 </ion-card-title>
+          <ion-card-subtitle> #DraftWineApp </ion-card-subtitle>
+        </ion-card-header>
+        <ion-button color="success" title="Click to Publish Config"
+          ><ion-icon name="cloud-upload"></ion-icon
+        ></ion-button>
+        <ion-button color="danger" title="Click to Delete Config"
+          ><ion-icon name="trash"></ion-icon
+        ></ion-button>
+      </ion-card>
+    </ion-accordion>
+  </ion-accordion-group>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="chevron-up-circle"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button title="Click to add new LCD" (click)="onAddLcdClick()">
+        <ion-icon name="tv" color="warning"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button
+        title="Click to add New Configuration"
+        (click)="onCreateClick()"
+      >
+        <ion-icon name="create" color="success"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

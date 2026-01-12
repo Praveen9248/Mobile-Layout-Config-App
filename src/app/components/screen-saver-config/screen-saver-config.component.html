@@ -1,0 +1,29 @@
+<ion-item>
+  <ion-label slot="start"> Screen Saver Status </ion-label>
+  <ion-label slot="end">
+    <ion-toggle [checked]="true"></ion-toggle>
+  </ion-label>
+</ion-item>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title> Select the Type of Screen Saver </ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-radio-group value="template">
+      <ion-item>
+        <ion-thumbnail
+          ><img src="https://picsum.photos/id/22/200"
+        /></ion-thumbnail>
+        <ion-radio class="ion-margin-horizontal"> Single Image Ads </ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail
+          ><img src="https://picsum.photos/id/19/200"
+        /></ion-thumbnail>
+        <ion-radio class="ion-margin-horizontal">
+          Multiple Images Slider</ion-radio
+        >
+      </ion-item>
+    </ion-radio-group>
+  </ion-card-content>
+</ion-card>
