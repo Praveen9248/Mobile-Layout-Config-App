@@ -2,43 +2,77 @@
   <ion-list-header>
     <ion-title> Fill in the button configuration Values </ion-title>
   </ion-list-header>
-  <ion-item>
-    <ion-input label="Height" labelPlacement="stacked" value="50px">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="Width" labelPlacement="stacked" value="50px"> </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input
-      label="Background Color"
-      labelPlacement="stacked"
-      value="#2f2f2f"
-    >
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="border radius" labelPlacement="stacked" value="20px">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input
-      label="text Postition Horizontal"
-      labelPlacement="stacked"
-      value="center"
-    >
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input
-      label="text position vertical"
-      labelPlacement="stacked"
-      value="center"
-    >
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="font style" labelPlacement="stacked" value="san-serif">
-    </ion-input>
-  </ion-item>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input
+        label="Height"
+        labelPlacement="stacked"
+        formControlName="height"
+        type="number"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Width"
+        labelPlacement="stacked"
+        formControlName="width"
+        type="number"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="color"
+        label="Background Color"
+        labelPlacement="stacked"
+        value="#2f2f2f"
+        formControlName="backgroundColor"
+        [style.height.px]="5"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="border radius"
+        labelPlacement="stacked"
+        formControlName="borderRadius"
+        type="number"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Text Horizontal Position"
+        labelPlacement="stacked"
+        formControlName="textPositionHorizontal"
+      >
+        <ion-select-option value="left">Left</ion-select-option>
+        <ion-select-option value="center">Center</ion-select-option>
+        <ion-select-option value="right">Right</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Text Vertical Position"
+        labelPlacement="stacked"
+        formControlName="textPositionVertical"
+      >
+        <ion-select-option value="top">Top</ion-select-option>
+        <ion-select-option value="center">Center</ion-select-option>
+        <ion-select-option value="bottom">Bottom</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Font Style"
+        labelPlacement="stacked"
+        formControlName="fontStyle"
+      >
+        <ion-select-option value="normal">Normal</ion-select-option>
+        <ion-select-option value="italic">Italic</ion-select-option>
+        <ion-select-option value="bold">Bold</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
 </ion-list>

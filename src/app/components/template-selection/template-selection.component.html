@@ -3,15 +3,24 @@
     <ion-card-title> Select the template </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-radio-group value="template">
-      <ion-item>
-        <img src="https://picsum.photos/id/1/100" />
-        <ion-radio class="ion-margin-horizontal"> Nested Filter </ion-radio>
-      </ion-item>
-      <ion-item>
-        <img src="https://picsum.photos/id/1/100" />
-        <ion-radio class="ion-margin-horizontal"> List Filter </ion-radio>
-      </ion-item>
-    </ion-radio-group>
+    <form [formGroup]="form">
+      <ion-radio-group formControlName="template" [value]="form.value.template">
+        <ion-item>
+          <img src="https://picsum.photos/id/1/100" />
+          <ion-radio class="ion-margin-horizontal" value="nested">
+            Nested Filter
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <img src="https://picsum.photos/id/1/100" />
+          <ion-radio class="ion-margin-horizontal" value="list">
+            List Filter
+          </ion-radio>
+        </ion-item>
+      </ion-radio-group>
+      @if (form.touched && form.invalid) {
+      <ion-text color="danger"> Template selection is required </ion-text>
+      }
+    </form>
   </ion-card-content>
 </ion-card>

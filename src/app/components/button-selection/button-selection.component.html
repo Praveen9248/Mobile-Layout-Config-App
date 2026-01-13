@@ -3,28 +3,39 @@
     <ion-card-title> Select the template </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-radio-group value="template">
-      <ion-item>
-        <ion-thumbnail
-          ><img
-            src="https://image2url.com/r2/default/images/1768210988789-490f5536-808a-4a21-8277-9b11ef13a564.png"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> Text-only </ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail
-          ><img
-            src="https://image2url.com/r2/default/images/1768211025428-7ed5b9b2-3bad-4464-8b9f-dc3462e398f1.png"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> Image-only </ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail>
-          <img
-            src="https://image2url.com/r2/default/images/1768211048256-cbec569f-c7fa-423b-bc58-2034d00244bb.png"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> Text Image </ion-radio>
-      </ion-item>
-    </ion-radio-group>
+    <form [formGroup]="form">
+      <ion-radio-group
+        formControlName="buttonType"
+        [value]="form.value.buttonType"
+      >
+        <ion-item>
+          <ion-thumbnail
+            ><img
+              src="https://image2url.com/r2/default/images/1768210988789-490f5536-808a-4a21-8277-9b11ef13a564.png"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="text-only">
+            Text-only
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail
+            ><img
+              src="https://image2url.com/r2/default/images/1768211025428-7ed5b9b2-3bad-4464-8b9f-dc3462e398f1.png"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="image-only">
+            Image-only
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail>
+            <img
+              src="https://image2url.com/r2/default/images/1768211048256-cbec569f-c7fa-423b-bc58-2034d00244bb.png"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="textImage">
+            Text Image
+          </ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </form>
   </ion-card-content>
 </ion-card>

@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="medium">
+    <ion-back-button defaultHref="/" slot="start"></ion-back-button>
     <ion-title>Configuration Setup Process</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,12 +11,40 @@
 
 <ion-footer class="ion-display-flex ion-justify-content-around">
   @if (currentStepIndex()===0) {
-  <ion-button (click)="onCancel()">Cancel</ion-button>
+  <ion-button
+    (click)="onCancel()"
+    class="ion-flex-1"
+    expand="full"
+    color="danger"
+    ><strong>Cancel</strong></ion-button
+  >
   }@else {
-  <ion-button (click)="handleBackStep()"> Back </ion-button>
+  <ion-button
+    (click)="handleBackStep()"
+    class="ion-flex-1"
+    expand="full"
+    color="warning"
+  >
+    <strong>Back</strong>
+  </ion-button>
   } @if(currentStepIndex()===this.setupContextService.steps.length-1){
-  <ion-button (click)="onSubmit()">Save and Submit</ion-button>
+  <ion-button
+    (click)="onSubmit()"
+    class="ion-flex-1"
+    color="success"
+    expand="full"
+    [disabled]="vSetupRef?.instance?.form?.invalid"
+    ><strong>Save and Submit</strong></ion-button
+  >
   }@else {
-  <ion-button (click)="handleNextStep()"> Save and Next </ion-button>
+  <ion-button
+    (click)="handleNextStep()"
+    class="ion-flex-1"
+    color="success"
+    expand="full"
+    [disabled]="vSetupRef?.instance?.form?.invalid"
+  >
+    <strong>Save and Next</strong>
+  </ion-button>
   }
 </ion-footer>

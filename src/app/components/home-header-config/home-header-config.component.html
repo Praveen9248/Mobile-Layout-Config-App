@@ -2,33 +2,56 @@
   <ion-list-header>
     <ion-title> Fill in the Header configuration Values </ion-title>
   </ion-list-header>
-  <ion-item>
-    <ion-input label="Height" labelPlacement="stacked" value="50px">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input
-      label="Background Color"
-      labelPlacement="stacked"
-      value="#2f2f2f"
-    >
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input label="border radius" labelPlacement="stacked" value="20px">
-    </ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input
-      label="text Postition Horizontal"
-      labelPlacement="stacked"
-      value="center"
-    >
-    </ion-input>
-  </ion-item>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input
+        type="number"
+        label="Height"
+        labelPlacement="stacked"
+        formControlName="height"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="color"
+        label="Background Color"
+        labelPlacement="stacked"
+        formControlName="backgroundColor"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="number"
+        label="border radius"
+        labelPlacement="stacked"
+        formControlName="borderRadius"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Text Position"
+        labelPlacement="stacked"
+        formControlName="textPosition"
+      >
+        <ion-select-option value="left">Left</ion-select-option>
+        <ion-select-option value="center">Center</ion-select-option>
+        <ion-select-option value="right">Right</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-input label="font style" labelPlacement="stacked" value="san-serif">
-    </ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-select
+        label="Font Style"
+        labelPlacement="stacked"
+        formControlName="fontStyle"
+      >
+        <ion-select-option value="normal">Normal</ion-select-option>
+        <ion-select-option value="bold">Bold</ion-select-option>
+        <ion-select-option value="italic">Italic</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </form>
 </ion-list>

@@ -3,31 +3,44 @@
     <ion-card-title> Select the header Template </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-radio-group value="template">
-      <ion-item>
-        <ion-thumbnail
-          ><img src="https://picsum.photos/id/22/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> header 1 </ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail
-          ><img src="https://picsum.photos/id/19/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> header 2 </ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail>
-          <img src="https://picsum.photos/id/42/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> header 3 </ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail>
-          <img src="https://picsum.photos/id/43/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> header 4 </ion-radio>
-      </ion-item>
-    </ion-radio-group>
+    <form [formGroup]="form">
+      <ion-radio-group
+        formControlName="headerType"
+        [value]="form.value.headerType"
+      >
+        <ion-item>
+          <ion-thumbnail
+            ><img src="https://picsum.photos/id/22/200"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="H0001">
+            header 1
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail
+            ><img src="https://picsum.photos/id/19/200"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="H0010">
+            header 2
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail>
+            <img src="https://picsum.photos/id/42/200"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="H0100">
+            header 3
+          </ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-thumbnail>
+            <img src="https://picsum.photos/id/43/200"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="H1000">
+            header 4
+          </ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </form>
   </ion-card-content>
 </ion-card>

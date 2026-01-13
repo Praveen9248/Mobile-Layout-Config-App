@@ -10,6 +10,7 @@ import {
 import { SetupCodeMap } from '../mappings/setup-mapping';
 import { SetupContextService } from '../services/setup-context/setup-context-service';
 import { Router } from '@angular/router';
+import { SetupStep } from '../interfaces/setup-step';
 
 @Component({
   selector: 'app-create-setup',
@@ -26,7 +27,7 @@ export class CreateSetupPage {
   @ViewChild('setupHost', { read: ViewContainerRef })
   vSetup!: ViewContainerRef;
 
-  private vSetupRef?: ComponentRef<any>;
+  vSetupRef?: ComponentRef<any>;
   private viewReady = false;
 
   constructor() {
@@ -50,16 +51,25 @@ export class CreateSetupPage {
   }
 
   handleNextStep() {
+    const instance = this.vSetupRef?.instance as SetupStep;
+
+    if (instance?.form?.invalid) {
+      instance.form.markAllAsTouched();
+      return;
+    }
+
+    instance?.save();
     this.setupContextService.goToNextStep();
   }
 
   handleBackStep() {
+    this.vSetupRef?.instance?.save?.();
     this.setupContextService.goToPrevStep();
   }
 
   onCancel() {
     this.router.navigate(['home']);
-    this.setupContextService.currentStepIdx.set(0);
+    this.setupContextService.reset();
   }
 
   onSubmit() {
