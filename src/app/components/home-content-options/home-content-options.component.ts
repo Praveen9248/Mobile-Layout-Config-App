@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { SetupStep } from 'src/app/interfaces/setup-step';
 import { SetupContextService } from 'src/app/services/setup-context/setup-context-service';
 
@@ -10,24 +10,52 @@ import { SetupContextService } from 'src/app/services/setup-context/setup-contex
   styleUrls: ['./home-content-options.component.scss'],
 })
 export class HomeContentOptionsComponent implements SetupStep {
-  private fb = inject(FormBuilder);
+  private fb = inject(UntypedFormBuilder);
   private setupContextService = inject(SetupContextService);
 
-  form = this.fb.group({ contentType: ['', Validators.required] });
+  form = this.fb.group({
+    contentType: ['', Validators.required],
+    backgroundType: ['', Validators.required],
+  });
+
+  private addBackgroundColorControl() {
+    this.form.addControl(
+      'backgroundColor',
+      this.fb.control('#f2ff', [Validators.required])
+    );
+  }
+
+  private addBackgroundImageControl() {
+    this.form.addControl(
+      'backgroundImage',
+      this.fb.control('', [Validators.required])
+    );
+  }
 
   ngOnInit() {
-    let data = this.setupContextService.getStepForm<any>('contentType');
+    let data = this.setupContextService.getStepForm<any>('contentInfo');
     if (data) {
-      console.log(data);
-      this.form.patchValue({ contentType: data });
-      console.log(this.form.value);
+      if (data.backgroundType === 'backgroundImage') {
+        this.addBackgroundImageControl();
+      } else if (data.backgroundType === 'backgroundColor') {
+        this.addBackgroundColorControl();
+      }
+      this.form.patchValue(data);
     }
+
+    this.form.get('backgroundType')!.valueChanges.subscribe((type) => {
+      this.form.removeControl('backgroundImage');
+      this.form.removeControl('backgroundColor');
+      if (type === 'backgroundImage') {
+        this.addBackgroundImageControl();
+      } else if (type === 'backgroundColor') {
+        this.addBackgroundColorControl();
+      }
+    });
   }
 
   save() {
-    this.setupContextService.setStepForm(
-      'contentType',
-      this.form.value.contentType
-    );
+    console.log(this.form.value);
+    this.setupContextService.setStepForm('contentInfo', this.form.value);
   }
 }

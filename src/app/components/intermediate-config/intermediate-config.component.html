@@ -1,27 +1,62 @@
-<ion-item>
-  <ion-label slot="start"> Intermediate Page Status </ion-label>
-  <ion-label slot="end">
-    <ion-toggle [checked]="true"></ion-toggle>
-  </ion-label>
-</ion-item>
 <ion-card>
   <ion-card-header>
     <ion-card-title> Select the Template of Intermediate </ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <ion-radio-group value="template">
+    @if (templateType()==='nested') {
+
+    <form [formGroup]="form">
+      <ion-radio-group formControlName="template">
+        <ion-item>
+          <ion-thumbnail
+            ><img src="https://picsum.photos/id/22/200"
+          /></ion-thumbnail>
+          <ion-radio class="ion-margin-horizontal" value="F0001">
+            Template1
+          </ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
       <ion-item>
-        <ion-thumbnail
-          ><img src="https://picsum.photos/id/22/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> Template1 </ion-radio>
+        <ion-select
+          formControlName="backgroundType"
+          label="Select Background Style"
+        >
+          <ion-select-option value="backgroundColor"
+            >Background Color</ion-select-option
+          >
+          <ion-select-option value="backgroundImage"
+            >Background Image</ion-select-option
+          >
+        </ion-select>
       </ion-item>
+      @if (form.get('backgroundImage')) {
       <ion-item>
-        <ion-thumbnail
-          ><img src="https://picsum.photos/id/19/200"
-        /></ion-thumbnail>
-        <ion-radio class="ion-margin-horizontal"> Template2</ion-radio>
+        <ion-input
+          formControlName="backgroundImage"
+          type="text"
+          label="Background Image URL"
+          labelPlacement="stacked"
+        >
+        </ion-input>
       </ion-item>
-    </ion-radio-group>
+      } @if (form.get('backgroundColor')) {
+      <ion-item>
+        <ion-input
+          formControlName="backgroundColor"
+          type="color"
+          label="Background Color"
+          labelPlacement="stacked"
+          [style.height.px]="5"
+        >
+        </ion-input>
+      </ion-item>
+      }
+    </form>
+    }@else {
+    <ion-text color="danger"
+      ><p>The settings are disabled for this selected template..</p></ion-text
+    >
+    }
   </ion-card-content>
 </ion-card>

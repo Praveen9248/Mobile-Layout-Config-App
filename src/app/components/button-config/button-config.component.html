@@ -5,15 +5,6 @@
   <form [formGroup]="form">
     <ion-item>
       <ion-input
-        label="Height"
-        labelPlacement="stacked"
-        formControlName="height"
-        type="number"
-      >
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input
         label="Width"
         labelPlacement="stacked"
         formControlName="width"
@@ -23,12 +14,10 @@
     </ion-item>
     <ion-item>
       <ion-input
-        type="color"
-        label="Background Color"
+        label="Height"
         labelPlacement="stacked"
-        value="#2f2f2f"
-        formControlName="backgroundColor"
-        [style.height.px]="5"
+        formControlName="height"
+        type="number"
       >
       </ion-input>
     </ion-item>
@@ -38,6 +27,29 @@
         labelPlacement="stacked"
         formControlName="borderRadius"
         type="number"
+      >
+      </ion-input>
+    </ion-item>
+    @if (form.get('textBgColor')) {
+    <ion-item>
+      <ion-input
+        type="color"
+        label="Background color"
+        labelPlacement="stacked"
+        value="#2f2f2f"
+        formControlName="textBgColor"
+        [style.height.px]="5"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="color"
+        label="text color"
+        labelPlacement="stacked"
+        value="#124124"
+        formControlName="textColor"
+        [style.height.px]="5"
       >
       </ion-input>
     </ion-item>
@@ -74,5 +86,71 @@
         <ion-select-option value="bold">Bold</ion-select-option>
       </ion-select>
     </ion-item>
+    } @if (form.get('imageBgColor')) {
+    <ion-item>
+      <ion-input
+        type="text"
+        label="Background color"
+        labelPlacement="stacked"
+        formControlName="imageBgColor"
+      >
+      </ion-input>
+    </ion-item>
+    } @if(form.get('textImageBgColor')){
+    <ion-item>
+      <ion-input
+        type="text"
+        label="Background color"
+        labelPlacement="stacked"
+        value="transparent"
+        formControlName="textImageBgColor"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="color"
+        label="text color"
+        labelPlacement="stacked"
+        value="#124124"
+        formControlName="textColor"
+        [style.height.px]="5"
+      >
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Text Horizontal Position"
+        labelPlacement="stacked"
+        formControlName="textPositionHorizontal"
+      >
+        <ion-select-option value="left">Left</ion-select-option>
+        <ion-select-option value="center">Center</ion-select-option>
+        <ion-select-option value="right">Right</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Text Vertical Position"
+        labelPlacement="stacked"
+        formControlName="textPositionVertical"
+      >
+        <ion-select-option value="top">Top</ion-select-option>
+        <ion-select-option value="center">Center</ion-select-option>
+        <ion-select-option value="bottom">Bottom</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select
+        label="Font Style"
+        labelPlacement="stacked"
+        formControlName="fontStyle"
+      >
+        <ion-select-option value="normal">Normal</ion-select-option>
+        <ion-select-option value="italic">Italic</ion-select-option>
+        <ion-select-option value="bold">Bold</ion-select-option>
+      </ion-select>
+    </ion-item>
+    }
   </form>
 </ion-list>

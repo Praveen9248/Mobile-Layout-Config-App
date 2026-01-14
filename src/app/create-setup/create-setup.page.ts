@@ -73,7 +73,15 @@ export class CreateSetupPage {
   }
 
   onSubmit() {
+    const instance = this.vSetupRef?.instance as SetupStep;
+
+    if (instance?.form?.invalid) {
+      instance.form.markAllAsTouched();
+      return;
+    }
+
+    instance?.save();
     this.router.navigate(['home']);
-    this.setupContextService.currentStepIdx.set(0);
+    // this.setupContextService.currentStepIdx.set(0);
   }
 }

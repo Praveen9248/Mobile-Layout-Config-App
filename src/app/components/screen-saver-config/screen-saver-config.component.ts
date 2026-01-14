@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { SetupStep } from 'src/app/interfaces/setup-step';
 import { SetupContextService } from 'src/app/services/setup-context/setup-context-service';
 
@@ -10,21 +10,42 @@ import { SetupContextService } from 'src/app/services/setup-context/setup-contex
   styleUrls: ['./screen-saver-config.component.scss'],
 })
 export class ScreenSaverConfigComponent implements SetupStep {
-  private fb = inject(FormBuilder);
+  private fb = inject(UntypedFormBuilder);
   private setupContextService = inject(SetupContextService);
+  private initialized = false;
 
   form = this.fb.group({
-    screenSaverStatus: ['', Validators.required],
-    screenSaverOpt: ['', Validators.required],
+    screenSaverStatus: ['false', Validators.required],
   });
+
+  private addScreenSaverOptControl() {
+    this.form.addControl(
+      'screenSaverOpt',
+      this.fb.control('', Validators.required)
+    );
+  }
+
+  private removeScreenSaverOptControl() {
+    this.form.removeControl('screenSaverOpt');
+  }
 
   ngOnInit() {
     let data = this.setupContextService.getStepForm<any>('screenSaver');
     if (data) {
-      console.log(data);
+      if (data.screenSaverStatus) {
+        this.addScreenSaverOptControl();
+      }
+
       this.form.patchValue(data);
-      console.log(this.form.value);
     }
+
+    this.form.get('screenSaverStatus')?.valueChanges.subscribe((enabled) => {
+      if (enabled) {
+        this.addScreenSaverOptControl();
+      } else {
+        this.removeScreenSaverOptControl();
+      }
+    });
   }
 
   save() {

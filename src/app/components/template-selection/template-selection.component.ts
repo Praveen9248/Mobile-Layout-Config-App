@@ -18,9 +18,7 @@ export class TemplateSelectionComponent implements SetupStep {
   ngOnInit() {
     let data = this.setupContextService.getStepForm<any>('template');
     if (data) {
-      console.log(data);
       this.form.patchValue({ template: data });
-      console.log(this.form.value);
     }
   }
 

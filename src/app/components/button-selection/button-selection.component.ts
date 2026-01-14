@@ -18,9 +18,7 @@ export class ButtonSelectionComponent implements SetupStep {
   ngOnInit() {
     let data = this.setupContextService.getStepForm<any>('buttonType');
     if (data) {
-      console.log(data);
       this.form.patchValue({ buttonType: data });
-      console.log(this.form.value);
     }
   }
 
